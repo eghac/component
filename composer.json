@@ -1,6 +1,6 @@
 {
     "name": "eliothumerez/entrust",
-    "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
+    "description": "Este componente proporciona una manera flexible de agregar permisos basados en roles, módulos, formularios, campos y acciones a Laravel",
     "keywords": ["laravel","illuminate","auth","roles","acl","permission"],
     "license": "MIT",
     "authors": [
