@@ -7,7 +7,7 @@ namespace Elioth\Entrust\Traits;
  * a role & permission management solution for Laravel.
  *
  * @license MIT
- * @package Zizaco\Entrust
+ * @package Elioth\Entrust
  */
 
 use Illuminate\Cache\TaggableStore;
@@ -91,11 +91,14 @@ trait EntrustRoleTrait
     public function perms()
     {
         return $this->belongsToMany(Config::get('entrust.permission'), Config::get('entrust.permission_role_table'), Config::get('entrust.role_foreign_key'), Config::get('entrust.permission_foreign_key'));
+//        return $this->belongsToMany(Config::get('entrust.permission'), Config::get('entrust.permission_role_table'), Config::get('entrust.role_foreign_key'), Config::get('entrust.permission_foreign_key'));
+//        return $this->belongsToMany(Config::get('entrust.permission'), Config::get('entrust.permission_role_table'));
     }
 
     public function modules()
     {
         return $this->belongsToMany(Config::get('entrust.module'), Config::get('entrust.role_module_table'), Config::get('entrust.role_foreign_key'), Config::get('entrust.module_foreign_key'));
+//        return $this->belongsToMany(Config::get('entrust.module'), Config::get('entrust.role_module_table'));
     }
 
     /**
@@ -156,11 +159,11 @@ trait EntrustRoleTrait
         return false;
     }
 
-    public function hasModules($name, $requireAll = false)
+    public function hasModule($name, $requireAll = false)
     {
         if (is_array($name)) {
             foreach ($name as $moduleName) {
-                $hasModule = $this->hasPermission($moduleName);
+                $hasModule = $this->hasModule($moduleName);
 
                 if ($hasModule && !$requireAll) {
                     return true;
@@ -175,7 +178,7 @@ trait EntrustRoleTrait
             return $requireAll;
         } else {
             foreach ($this->cachedModules() as $module) {
-                if ($module->name == $name) {
+                if ($module->modules_name == $name) {
                     return true;
                 }
             }

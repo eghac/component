@@ -151,6 +151,7 @@ class EntrustSetupTables extends Migration
             $table->increments('id');
             $table->string('actions_name', 50);
             $table->tinyInteger('state')->nullable();
+            $table->nullableTimestamps();
         });
 
         Schema::create('{{ $formActionTable }}', function (Blueprint $table) {

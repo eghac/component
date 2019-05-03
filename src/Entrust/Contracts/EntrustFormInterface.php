@@ -8,4 +8,8 @@ interface EntrustFormInterface
 {
     public function module();
 
+    public function fields();
+
+    public function actions();
+
 }
